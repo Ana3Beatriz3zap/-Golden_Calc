@@ -12,6 +12,8 @@ auxiliando na rotina de avaliação de peças da **CA Joias**.
 
 Referência: [GEHAKA](https://www.gehaka.com.br/produtos/linha-pesagem/balanca-de-precisao-com-ajuste-automatico-por-peso-interno/bk3000-ajuste-automatico-peso-interno)
 
+"A aplicação utiliza o princípio de Arquimedes para determinar a densidade da peça a partir das pesagens no ar e na água, seguindo o mesmo princípio utilizado durante a medição na balança."
+
 ---
 
 ## 💡 Funcionalidades
