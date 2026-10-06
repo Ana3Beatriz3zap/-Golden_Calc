@@ -10,6 +10,8 @@ auxiliando na rotina de avaliação de peças da **CA Joias**.
 2. Pesagem hidrostática: Pese a mesma peça completamente submersa no recipiente com água do kit de densidade.
 3. Leitura do teor: O software interno da balança calcula a densidade e exibe o percentual aproximado de pureza/teor do ouro comparado com a liga padrão (considerando o ouro puro a 19,32 g/cm³).
 
+Referência: [GEHAKA](https://www.gehaka.com.br/produtos/linha-pesagem/balanca-de-precisao-com-ajuste-automatico-por-peso-interno/bk3000-ajuste-automatico-peso-interno)
+
 ---
 
 ## 💡 Funcionalidades
