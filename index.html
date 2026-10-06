@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Golden Calc - CA Joias</title>
+
+    <!-- Favicon -->
+    <link
+        rel="icon"
+        type="image/png"
+        href="favicon.png"
+    >
+
+    <!-- Fonte Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         CABEÇALHO
+    ====================================================== -->
+
+    <header class="header">
+
+        <div class="header-content">
+
+            <!-- Logo da calculadora -->
+            <img
+                src="logo_au sem fundo.png"
+                alt="Golden Calc"
+                class="logo-calculadora"
+            >
+
+            <!-- Logo da empresa -->
+            <img
+                src="ca sem fundo.png"
+                alt="CA Joias"
+                class="logo-empresa"
+            >
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         CONTEÚDO PRINCIPAL
+    ====================================================== -->
+
+    <main class="container">
+
+
+        <!-- =================================================
+             INTRODUÇÃO
+        ================================================== -->
+
+        <section class="intro">
+
+            <h2>Análise da peça</h2>
+
+            <p>
+                Informe os valores obtidos nas pesagens da peça
+                para calcular sua densidade e estimar o teor de ouro.
+            </p>
+
+        </section>
+
+
+        <!-- =================================================
+             CALCULADORA
+        ================================================== -->
+
+        <section class="calculator-card">
+
+            <div class="section-title">
+
+                <h2>Dados da pesagem</h2>
+
+            </div>
+
+
+            <div class="inputs">
+
+
+                <!-- Peso no ar -->
+
+                <div class="input-group">
+
+                    <label for="pesoAr">
+                        Peso no ar
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="number"
+                            id="pesoAr"
+                            placeholder="Ex.: 2,36"
+                            step="0.01"
+                            min="0"
+                        >
+
+                        <span>g</span>
+
+                    </div>
+
+                    <small>
+                        Peso da peça obtido na pesagem convencional.
+                    </small>
+
+                </div>
+
+
+                <!-- Peso submerso -->
+
+                <div class="input-group">
+
+                    <label for="pesoAgua">
+                        Peso submerso
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <input
+                            type="number"
+                            id="pesoAgua"
+                            placeholder="Ex.: 2,19"
+                            step="0.01"
+                            min="0"
+                        >
+
+                        <span>g</span>
+
+                    </div>
+
+                    <small>
+                        Peso da peça completamente submersa em água.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- Botão -->
+
+            <button
+                id="btnCalcular"
+                class="btn-calcular"
+            >
+                CALCULAR RESULTADO
+            </button>
+
+
+            <!-- Mensagem de erro -->
+
+            <div
+                id="mensagemErro"
+                class="mensagem erro"
+            ></div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             RESULTADO
+        ================================================== -->
+
+        <section
+            id="resultado"
+            class="resultado-section"
+        >
+
+            <div class="section-title">
+
+                <h2>Resultado da análise</h2>
+
+            </div>
+
+
+            <div class="resultados-grid">
+
+
+                <!-- Densidade -->
+
+                <div class="resultado-card">
+
+                    <div class="resultado-icon">
+                        ρ
+                    </div>
+
+                    <div>
+
+                        <p>Densidade</p>
+
+                        <strong id="resultadoDensidade">
+                            --
+                        </strong>
+
+                        <span>
+                            g/cm³
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Pureza -->
+
+                <div class="resultado-card">
+
+                    <div class="resultado-icon">
+                        %
+                    </div>
+
+                    <div>
+
+                        <p>Pureza estimada</p>
+
+                        <strong id="resultadoPureza">
+                            --
+                        </strong>
+
+                        <span>
+                            %
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Quilate -->
+
+                <div class="resultado-card">
+
+                    <div class="resultado-icon">
+                        K
+                    </div>
+
+                    <div>
+
+                        <p>Quilate de pureza</p>
+
+                        <strong id="resultadoQuilate">
+                            --
+                        </strong>
+
+                        <span>
+                            K
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Peso fino -->
+
+                <div class="resultado-card">
+
+                    <div class="resultado-icon">
+                        Au
+                    </div>
+
+                    <div>
+
+                        <p>Peso fino</p>
+
+                        <strong id="resultadoPesoFino">
+                            --
+                        </strong>
+
+                        <span>
+                            g
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             TABELA DE REFERÊNCIA
+        ================================================== -->
+
+        <section class="reference-section">
+
+
+            <div class="section-title">
+
+                <h2>Tabela de referência</h2>
+
+            </div>
+
+
+            <p class="section-description">
+
+                Valores aproximados utilizados como referência
+                para interpretação da densidade e do teor de ouro.
+
+            </p>
+
+
+            <div class="table-container">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                Densidade aproximada
+                            </th>
+
+                            <th>
+                                Teor
+                            </th>
+
+                            <th>
+                                Quilate
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <tr>
+
+                            <td>
+                                19,32 g/cm³
+                            </td>
+
+                            <td>
+                                1000‰
+                            </td>
+
+                            <td>
+                                24K
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                17,45 g/cm³
+                            </td>
+
+                            <td>
+                                916‰
+                            </td>
+
+                            <td>
+                                22K
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                15,58 g/cm³
+                            </td>
+
+                            <td>
+                                750‰
+                            </td>
+
+                            <td>
+                                18K
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                14,10 g/cm³
+                            </td>
+
+                            <td>
+                                585‰
+                            </td>
+
+                            <td>
+                                14K
+                            </td>
+
+                        </tr>
+
+
+                        <tr>
+
+                            <td>
+                                13,07 g/cm³
+                            </td>
+
+                            <td>
+                                416‰
+                            </td>
+
+                            <td>
+                                10K
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+
+            <div class="table-warning">
+
+                <strong>Importante:</strong>
+
+                os valores apresentados são referências aproximadas.
+                A densidade pode variar de acordo com a composição
+                da liga metálica e outros materiais presentes na peça.
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             COMO FUNCIONA
+        ================================================== -->
+
+        <section class="how-section">
+
+
+            <div class="section-title">
+
+                <h2>Como funciona?</h2>
+
+            </div>
+
+
+            <div class="how-content">
+
+
+                <div class="how-step">
+
+                    <strong>
+                        Pesagem no ar
+                    </strong>
+
+                    <p>
+                        A peça é pesada normalmente para obter
+                        seu peso no ar.
+                    </p>
+
+                </div>
+
+
+                <div class="how-step">
+
+                    <strong>
+                        Pesagem hidrostática
+                    </strong>
+
+                    <p>
+                        A mesma peça é pesada completamente
+                        submersa em água.
+                    </p>
+
+                </div>
+
+
+                <div class="how-step">
+
+                    <strong>
+                        Cálculo da densidade
+                    </strong>
+
+                    <p>
+                        A densidade é calculada a partir da diferença
+                        entre o peso no ar e o peso submerso,
+                        utilizando o princípio de Arquimedes.
+                    </p>
+
+                </div>
+
+
+                <div class="how-step">
+
+                    <strong>
+                        Estimativa do teor
+                    </strong>
+
+                    <p>
+                        A densidade obtida é utilizada para estimar
+                        o teor de ouro presente na peça.
+                    </p>
+
+                </div>
+
+
+                <div class="how-step">
+
+                    <strong>
+                        Resultado
+                    </strong>
+
+                    <p>
+                        Ao final, são apresentados a densidade,
+                        a pureza, o quilate e o peso fino estimados.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =================================================
+             ATENÇÃO
+        ================================================== -->
+
+        <section class="warning-section">
+
+
+            <div class="warning-icon">
+                !
+            </div>
+
+
+            <div>
+
+                <h3>
+                    Atenção
+                </h3>
+
+                <p>
+                    O resultado de pureza é uma estimativa baseada
+                    na densidade da amostra e depende da composição
+                    da liga. Peças ocas, com pedras ou outros materiais
+                    podem comprometer a medição.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         RODAPÉ
+    ====================================================== -->
+
+    <footer class="footer">
+
+        <p>
+             © 2026 Golden Calc — Calculadora de Pureza do Ouro
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
