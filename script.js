@@ -1,146 +1,67 @@
-const pesoArInput = document.getElementById("pesoAr");
-const pesoAguaInput = document.getElementById("pesoAgua");
+const a = document.getElementById("pesoAr");
+const b = document.getElementById("pesoAgua");
+const c = document.getElementById("btnCalcular");
+const d = document.getElementById("mensagemErro");
+const e = document.getElementById("resultadoDensidade");
+const f = document.getElementById("resultadoPureza");
+const g = document.getElementById("resultadoQuilate");
+const h = document.getElementById("resultadoPesoFino");
 
-const btnCalcular = document.getElementById("btnCalcular");
+c.onclick = function () {
 
-const mensagemErro = document.getElementById("mensagemErro");
+    d.style.display = "none";
 
-const resultadoDensidade = document.getElementById("resultadoDensidade");
-const resultadoPureza = document.getElementById("resultadoPureza");
-const resultadoQuilate = document.getElementById("resultadoQuilate");
-const resultadoPesoFino = document.getElementById("resultadoPesoFino");
+    let x = parseFloat(a.value);
+    let y = parseFloat(b.value);
 
-
-btnCalcular.addEventListener("click", calcular);
-
-
-function calcular() {
-
-    mensagemErro.style.display = "none";
-    mensagemErro.textContent = "";
-
-
-    const pesoAr = parseFloat(pesoArInput.value);
-    const pesoAgua = parseFloat(pesoAguaInput.value);
-
-
-    // Validação dos campos
-    if (isNaN(pesoAr) || isNaN(pesoAgua)) {
-
-        mostrarErro("Preencha os dois campos de pesagem.");
-
+    if (isNaN(x)) {
+        d.innerHTML = "Preencha os dois campos de pesagem.";
+        d.style.display = "block";
         return;
     }
 
-
-    // O peso no ar precisa ser maior que zero
-    if (pesoAr <= 0) {
-
-        mostrarErro("O peso no ar deve ser maior que zero.");
-
+    if (isNaN(y)) {
+        d.innerHTML = "Preencha os dois campos de pesagem.";
+        d.style.display = "block";
         return;
     }
 
-
-    // O peso submerso não pode ser negativo
-    if (pesoAgua < 0) {
-
-        mostrarErro("O peso submerso não pode ser negativo.");
-
+    if (x <= 0) {
+        d.innerHTML = "O peso no ar deve ser maior que zero.";
+        d.style.display = "block";
         return;
     }
 
-
-    // O peso submerso deve ser menor que o peso no ar
-    if (pesoAgua >= pesoAr) {
-
-        mostrarErro(
-            "O peso submerso deve ser menor que o peso no ar."
-        );
-
+    if (y < 0) {
+        d.innerHTML = "O peso submerso não pode ser negativo.";
+        d.style.display = "block";
         return;
     }
 
-
-    // Cálculo da densidade utilizando o princípio de Arquimedes
-    const densidade = pesoAr / (pesoAr - pesoAgua);
-
-
-    // Calcula a pureza estimada
-    const pureza = calcularPureza(densidade);
-
-
-    // Converte a pureza para quilates
-    const quilate = calcularQuilate(pureza);
-
-
-    // Calcula o peso fino
-    const pesoFino = pesoAr * (pureza / 100);
-
-
-    // Exibe os resultados
-    resultadoDensidade.textContent = densidade.toFixed(2);
-
-    resultadoPureza.textContent = pureza.toFixed(1);
-
-    resultadoQuilate.textContent = quilate;
-
-    resultadoPesoFino.textContent = pesoFino.toFixed(2);
-}
-
-
-/*
- * Esta função será substituída quando tivermos
- * a regra oficial utilizada pelo cliente/balança
- * para converter densidade em teor de ouro.
- *
- * Por enquanto, utiliza uma estimativa baseada
- * na relação entre densidade e ouro puro.
- */
-function calcularPureza(densidade) {
-
-    const densidadeOuroPuro = 19.32;
-
-    let pureza = (densidade / densidadeOuroPuro) * 100;
-
-
-    // Impede valores acima de 100%
-    if (pureza > 100) {
-        pureza = 100;
+    if (y >= x) {
+        d.innerHTML = "O peso submerso deve ser menor que o peso no ar.";
+        d.style.display = "block";
+        return;
     }
 
+    let z = x / (x - y);
 
-    // Impede valores negativos
-    if (pureza < 0) {
-        pureza = 0;
+    let q = (z / 19.32) * 100;
+
+    if (q > 100) {
+        q = 100;
     }
 
+    if (q < 0) {
+        q = 0;
+    }
 
-    return pureza;
-}
+    let r = Math.round((q / 100) * 24);
 
+    let s = x * (q / 100);
 
-/*
- * Converte a porcentagem de pureza para quilates.
- *
- * 100% = 24K
- * 75%  = 18K
- * 58,5% = 14K
- */
-function calcularQuilate(pureza) {
-
-    const quilate = (pureza / 100) * 24;
-
-    return Math.round(quilate);
-}
-
-
-/*
- * Exibe uma mensagem de erro na interface.
- */
-function mostrarErro(mensagem) {
-
-    mensagemErro.textContent = mensagem;
-
-    mensagemErro.style.display = "block";
-}
+    e.innerHTML = z.toFixed(2);
+    f.innerHTML = q.toFixed(1);
+    g.innerHTML = r;
+    h.innerHTML = s.toFixed(2);
+};
